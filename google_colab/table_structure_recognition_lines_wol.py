@@ -164,7 +164,7 @@ def recognize_structure(img):
     # Get mean of heights
     mean = np.mean(heights)
 
-    is_image_set = False
+    image = None
     # Create list box to store all boxes in
     box = []
     # Get position (x,y), width and height for every contour and show the contour on image
@@ -174,9 +174,8 @@ def recognize_structure(img):
         #print("x", x, "y", y, "w", w, "h", h)
         if (w < 0.9*img_width and h < 0.9*img_height):
             image = cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
-            is_image_set = True
             box.append([x, y, w, h])
-    if is_image_set:
+    if image is not None:
         cv2_imshow(image)
 
     # Creating two lists to define row and column in which cell is located
